@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+    <html lang="en">
+        <head>
+            <meta charset="utf-8">
+            <meta http-equiv="X-UA-Compatible" content="IE=edge">
+            <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+            
+            <title>Perfect Cents</title>
+            <!--<link rel="icon" href="css/images/fav.png" type="css" />-->
+            <link rel="stylesheet" href="main.css" type="text/css" />
+            <meta name="theme-color" content="#FFFFFF" >
+
+        </head>
+        <body>
+            <div class="gameboard">
+                <div id="gameid">
+                        
+                    <button id="playButton" onClick="startGame()">PLAY ►</button>
+                    <!--<button id="pauseButton" onClick="pauseGame()">Pause ❚❚</button>-->
+                    <div class="header">
+                        <h1 class="title">Perfect Cents</h1>
+
+                    </div>
+                    <div class="gameplay">
+                        <h1 id="timerid"></h1>
+                        <h1 id="lifeid"></h1>
+                        <h1 id="pointsid"></h1>
+                        <h1 id="totalid"></h1>
+                    
+                        <button class="penny" onClick="money(1)">1¢</button>
+                        <button class="nickle" onClick="money(5)">5¢</button>
+                        <button class="dime"  onClick="money(10)">10¢</button>
+                        <button class="quarter"  onClick="money(25)">25¢</button>
+                    
+                        <h1 id="addTotalid"></h1>
+                    </div>
+                </div>
+
+                <div id="gameoverid">
+                    <div class="header">
+                        <h1 class="title">Perfect Cents</h1>
+                    </div>
+                    <div class="gameover-section">
+                        <h1 class="gameover">Game Over</h1>
+                        <h1 id="scoreid"></h1>
+                        <button class="tryagain" onClick="gameRestart()">Try Again!</button>
+                    </div>
+                </div>
+            </div>
+        </body>
+
+        <script>
+
+            var pause = true;
+            var timer = 0;
+            var timerid = document.getElementById("timerid");
+            timerid.innerHTML = "Timer: " + timer;
+            var myTimer = setInterval(addTime, 1000);
+            function addTime(){
+                if (pause === false){
+                    timer++;
+                    timerid.innerHTML = "Timer: " +  timer;
+                    if(timer >= 10){
+                        life--;
+                        totalReset();
+                    }
+                }
+            }
+
+            var game = document.getElementById("gameid");
+
+            var playButton = document.getElementById("playButton");
+
+            //var pauseButton = document.getElementById("pauseButton");
+            //pauseButton.style.display = 'none';
+
+            var gameover = document.getElementById("gameoverid");
+            gameover.style.display = 'none';
+
+            var life = 3;
+            var lifeid = document.getElementById("lifeid");
+            lifeid.innerHTML = "HP: " + life;
+
+
+            var total = 0;
+            checkTotal = () =>{
+                if (total === 0){
+                    total = Math.floor(Math.random() * 100);
+                }
+            }
+            checkTotal();
+            var totalid = document.getElementById("totalid");
+            totalid.innerHTML = "Get to " + total;
+            console.log("total " + total);
+
+            var points = 0;
+            var pointsid = document.getElementById("pointsid");
+            pointsid.innerHTML = "Score: " + points;
+            console.log("points " + points);
+
+
+            var addTotal = 0;
+            var addTotalid = document.getElementById("addTotalid");
+            addTotalid.innerHTML = "You have " + addTotal + " so far!";
+            console.log("addTotal " + addTotal);
+
+            
+
+            money = (m) =>{
+                addTotal += m;
+                addTotalid.innerHTML = "You have " + addTotal + " so far!";
+                console.log("addTotal " + addTotal);
+
+                if (addTotal === total){
+                    points++;
+                    totalReset();
+                }
+
+                if (addTotal >= total){
+                    life--;
+                    totalReset();
+                }
+            }
+
+            totalReset = () =>{
+                addTotal = 0;
+                addTotalid.innerHTML = "You have " + addTotal + " so far!";
+                console.log("addTotal " + addTotal);
+
+                lifeid.innerHTML = "HP: " + life;
+                
+                pointsid.innerHTML = "Score: " + points;
+                console.log("points " + points);
+
+                total = Math.floor(Math.random() * 100);
+                totalid.innerHTML = "Get to " + total;
+                console.log("total " + total);
+
+                timer = 0;
+
+                endGame();
+            }
+
+            startGame = () =>{
+
+                game.style.display = 'block';
+                gameover.style.display = 'none';
+
+                playButton.style.display = 'none';
+                //pauseButton.style.display = 'block';
+
+                points = 0;
+                pointsid.innerHTML = "Score: " + points;
+
+                life = 3;
+                lifeid.innerHTML = "HP: " + life;
+
+                timer = 0;
+                pause = false;
+
+            }
+
+            endGame = () =>{
+                if (life <= 0){
+                    game.style.display = 'none';
+                    gameover.style.display = 'block';
+                    
+                    let score = document.getElementById("scoreid");
+                    score.innerHTML = points;
+                    console.log("score " + points);
+
+                    timer = 0;
+                    pause = true;
+                    timerid.innerHTML = "Timer: " +  timer;
+                }
+            }
+
+            gameRestart = () =>{
+                game.style.display = 'block';
+                gameover.style.display = 'none';
+
+                points = 0;
+                pointsid.innerHTML = "Score: " + points;
+
+                life = 3;
+                lifeid.innerHTML = "HP: " + life;
+
+                timer = 0;
+                pause = false;
+
+            }
+        
+        </script>
+    </html>

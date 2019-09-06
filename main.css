@@ -1,0 +1,112 @@
+@import url('https://fonts.googleapis.com/css?family=Modak&display=swap');
+
+body{
+   background: #F1592A;
+   font-family: Arial, Helvetica, sans-serif;
+}
+
+.gameboard{
+    background-color: #E0E0C7;
+    margin: 0 auto;
+    max-width: 600px;
+    position: relative;
+    border-radius: 20px;
+    box-shadow: 0 0 20px brown;
+}
+
+#playButton{
+    background: #FFC643;
+    color: #3B5153;
+    border: none;
+    border-radius: 10px;
+    padding: 12px;
+    top: 10%;
+    right:10%;
+    position: absolute;
+    font-weight: 600;
+}
+
+#pauseButton{
+    background: #FFC643;
+    color: #3B5153;
+    border: none;
+    border-radius: 10px;
+    padding: 12px;
+    top: 10%;
+    right:10%;
+    position: absolute;
+    font-weight: 600;
+}
+
+.header{
+    background: #489194;
+    padding: 14px 10%;
+    border-radius: 20px 20px 0 0;
+}
+.title{
+    color: #FFC643;
+    font-family: 'Modak', cursive;
+    font-size: 48px;
+    font-weight: 100;
+    text-shadow: 2px 2px #3B5153, -2px 2px #3B5153, -2px -2px #3B5153, 2px -2px #3B5153;
+}
+
+.gameplay{
+    text-align: center;
+    padding: 0 0 50px;
+}
+
+.penny{
+    background: brown;
+    color: yellow;
+    padding: 12px;
+    border-radius: 50%;
+    border-color: yellow;
+    margin: 10px;
+    
+}
+
+.nickle{
+    background: lightgrey;
+    color: grey;
+    padding: 14px;
+    border-radius: 50%;
+    border-color: grey;
+    margin: 10px;
+
+}
+
+.dime{
+    background: lightgrey;
+    color: grey;
+    padding: 10px 8px;
+    border-radius: 50%;
+    border-color: grey;
+    margin: 10px;
+}
+
+.quarter{
+    background: lightgrey;
+    color: grey;
+    padding: 16px 14px;
+    border-radius: 50%;
+    border-color: grey;
+    margin: 10px;
+    transition: 0.5s;
+}
+
+.gameover-section{
+    text-align: center;
+    padding: 10%
+}
+
+.tryagain{
+    background: #FFC643;
+    color: #3B5153;
+    border: none;
+    border-radius: 10px;
+    padding: 12px;
+    top: 10%;
+    right:10%;
+    font-weight: 600;
+}
